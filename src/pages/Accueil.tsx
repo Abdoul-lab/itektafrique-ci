@@ -36,7 +36,7 @@ const Accueil: React.FC = () => {
       <section className="py-12 sm:py-20 bg-white">
         <div className="w-full px-3 sm:px-4">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Nos Prinipaux Services</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Nos Principaux Services</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2">
               Des solutions informatiques complètes pour votre transformation digitale
             </p>
