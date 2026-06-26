@@ -136,28 +136,38 @@ const Accueil: React.FC = () => {
                   <CheckCircle className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Vous ne payez que ce dont vous avez besoin</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Pas de fonctionnalités inutiles qui gonflent la facture — chaque euro investi a un usage concret.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Expertise locale & internationale</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Standards internationaux appliqués aux réalités africaines — pas une solution copiée d'ailleurs qui ne s'adapte pas à votre marché.</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
                 <div className="bg-[var(--brand-orange)] p-2 rounded-full flex-shrink-0 mt-1">
-                  <Users className="h-6 w-6 text-white" />
+                  <Server className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Votre projet n'est pas abandonné après livraison</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Nous restons joignables si quelque chose cloche — même après la fin du contrat.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Sur-mesure & Intelligence Artificielle</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Vos outils s'intègrent dans vos processus existants et l'IA automatise ce que vos équipes font déjà — sans tout réinventer.</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
                 <div className="bg-purple-500 p-2 rounded-full flex-shrink-0 mt-1">
-                  <Server className="h-6 w-6 text-white" />
+                  <Users className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Vous n'aurez pas à tout refaire dans 2 ans</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Nous utilisons des outils qui durent — pas des technologies à la mode qui deviennent obsolètes rapidement.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Accompagnement de A à Z</h3>
+                  <p className="text-sm sm:text-base text-gray-600">De l'analyse de votre besoin à la formation de vos équipes, vous n'êtes jamais seul — nous restons jusqu'à ce que ça fonctionne vraiment.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="bg-green-500 p-2 rounded-full flex-shrink-0 mt-1">
+                  <Smartphone className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Support ultra-réactif</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Quand quelque chose cloche, vous avez une équipe joignable qui connaît votre dossier — pas un ticket qui disparaît dans la nature.</p>
                 </div>
               </div>
             </div>
