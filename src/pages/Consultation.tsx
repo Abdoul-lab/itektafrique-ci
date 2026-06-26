@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Calendar,
   Clock,
@@ -9,11 +9,12 @@ import {
   CheckCircle,
   MapPin,
 } from 'lucide-react';
-import { consultationServices, strengths } from '../data/servicesData';
+import { consultationServices, strengths, profileLabels } from '../data/servicesData';
 import { CONTACT } from '../constants/contact';
 
 const Consultation: React.FC = () => {
   const [selectedService, setSelectedService] = useState('');
+  const [selectedProfile, setSelectedProfile] = useState('Tous');
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -25,6 +26,11 @@ const Consultation: React.FC = () => {
     preferredTime: '',
   });
 
+  const filteredServices = useMemo(() => {
+    if (selectedProfile === 'Tous') return consultationServices;
+    return consultationServices.filter((s) => s.profiles.includes(selectedProfile));
+  }, [selectedProfile]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -32,7 +38,6 @@ const Consultation: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulaire soumis:', formData);
     alert('Votre demande a bien été envoyée ! Nous vous contacterons dans les plus brefs délais.');
   };
 
@@ -56,18 +61,35 @@ const Consultation: React.FC = () => {
         </div>
       </section>
 
-      {/* Nos services */}
+      {/* Nos offres */}
       <section className="py-12 sm:py-20 bg-white">
         <div className="w-full px-3 sm:px-4">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Nos services</h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              Choisissez la formule qui correspond à votre situation
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Nos offres</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2 mb-8">
+              Chaque offre est packagée par profil et chiffrée sur devis, au plus près de votre besoin réel.
             </p>
+
+            {/* Filtre par profil */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+              {profileLabels.map((profile) => (
+                <button
+                  key={profile}
+                  onClick={() => setSelectedProfile(profile)}
+                  className={`px-4 sm:px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    selectedProfile === profile
+                      ? 'bg-[var(--brand-blue)] text-white shadow-md'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {profile}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 max-w-6xl mx-auto">
-            {consultationServices.map((service) => {
+            {filteredServices.map((service) => {
               const IconComponent = service.icon;
               return (
                 <div
@@ -80,11 +102,19 @@ const Consultation: React.FC = () => {
                   onClick={() => setSelectedService(service.id)}
                 >
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className={`p-3 rounded-full flex-shrink-0 ${selectedService === service.id ? 'bg-blue-500' : 'bg-orange-500'}`}>
+                    <div className={`p-3 rounded-full flex-shrink-0 ${selectedService === service.id ? 'bg-blue-500' : 'bg-[var(--brand-orange)]'}`}>
                       <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-2">{service.title}</h3>
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <h3 className="text-lg sm:text-xl font-bold text-gray-800">{service.title}</h3>
+                        {service.badge && (
+                          <span className="text-xs font-bold bg-[var(--brand-orange)] text-white px-2 py-0.5 rounded-full">
+                            {service.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-[var(--brand-blue)] font-medium mb-2 italic">{service.subtitle}</p>
                       <p className="text-sm sm:text-base text-gray-600 mb-4">{service.description}</p>
 
                       <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-6 mb-4 text-xs sm:text-sm text-gray-500">
@@ -105,6 +135,14 @@ const Consultation: React.FC = () => {
                           </li>
                         ))}
                       </ul>
+
+                      <div className="mt-4 flex flex-wrap gap-1">
+                        {service.profiles.map((p) => (
+                          <span key={p} className="text-xs bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full">
+                            {p}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -147,7 +185,7 @@ const Consultation: React.FC = () => {
                   <div>
                     <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                       <Building className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                      Entreprise
+                      Entreprise / Organisation
                     </label>
                     <input
                       type="text"
@@ -229,7 +267,7 @@ const Consultation: React.FC = () => {
 
                 <div>
                   <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                    Service souhaité *
+                    Offre souhaitée *
                   </label>
                   <select
                     name="service"
@@ -238,10 +276,10 @@ const Consultation: React.FC = () => {
                     required
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm"
                   >
-                    <option value="">Choisir un service</option>
+                    <option value="">Choisir une offre</option>
                     {consultationServices.map((service) => (
                       <option key={service.id} value={service.id}>
-                        {service.title}
+                        {service.title} — {service.subtitle}
                       </option>
                     ))}
                   </select>
@@ -249,7 +287,7 @@ const Consultation: React.FC = () => {
 
                 <div>
                   <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                    Message
+                    Décrivez votre projet
                   </label>
                   <textarea
                     name="message"
@@ -257,7 +295,7 @@ const Consultation: React.FC = () => {
                     onChange={handleInputChange}
                     rows={4}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm"
-                    placeholder="Décrivez votre projet ou vos besoins..."
+                    placeholder="Quel est votre besoin principal ? Quels problèmes voulez-vous résoudre ?"
                   />
                 </div>
 
