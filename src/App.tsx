@@ -8,21 +8,11 @@ import Chatbot from './components/Chatbot';
 function App() {
   const [currentPage, setCurrentPage] = useState('accueil');
 
-  // Au chargement initial, s'assurer que la page est en haut
-  useEffect(() => {
-    try {
-      window.scrollTo(0, 0);
-    } catch (e) {
-      // noop en cas d'environnement sans window
-    }
-  }, []);
-
-  // À chaque changement de page, déplacer le scroll en haut
   useEffect(() => {
     try {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     } catch (e) {
-      // noop
+      // noop en environnement SSR
     }
   }, [currentPage]);
 

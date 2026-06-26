@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { CONTACT } from '../constants/contact';
 
 interface NavigationProps {
   currentPage: string;
@@ -50,11 +51,11 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
             <div className="flex items-center space-x-2 xl:space-x-4 text-xs xl:text-sm text-gray-600 border-l pl-4">
               <div className="flex items-center space-x-1 hidden xl:flex">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <span>((+225)) 07 08 92 71 14 / 07 79 36 91 80</span>
+                <span>{CONTACT.phone}</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span className="hidden sm:inline">contact@itektafrique-ci.com</span>
+                <span className="hidden sm:inline">{CONTACT.email}</span>
               </div>
             </div>
           </div>
@@ -93,15 +94,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
               <div className="pt-3 sm:pt-4 border-t space-y-2">
                 <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 px-3 sm:px-4">
                   <Phone className="h-4 w-4 flex-shrink-0" />
-                  <span>((+225)) 07 08 92 71 14 / 07 79 36 91 80</span>
+                  <span>{CONTACT.phone}</span>
                 </div>
                 <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 px-3 sm:px-4">
                   <Mail className="h-4 w-4 flex-shrink-0" />
-                  <span>contact@itektafrique-ci.com</span>
+                  <span>{CONTACT.email}</span>
                 </div>
                 <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 px-3 sm:px-4">
                   <MapPin className="h-4 w-4 flex-shrink-0" />
-                  <span>digital.itektafrique-ci.com</span>
+                  <span>{CONTACT.website}</span>
                 </div>
               </div>
             </div>
