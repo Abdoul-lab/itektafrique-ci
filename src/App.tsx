@@ -19,7 +19,7 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'accueil':
-        return <Accueil />;
+        return <Accueil onPageChange={setCurrentPage} />;
       case 'consultation':
         return <Consultation />;
       case 'outils':

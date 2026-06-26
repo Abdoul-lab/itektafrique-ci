@@ -2,7 +2,11 @@ import React from 'react';
 import { Code, Users, Monitor, Phone, Mail, MapPin, CheckCircle, Server, Smartphone } from 'lucide-react';
 import { CONTACT } from '../constants/contact';
 
-const Accueil: React.FC = () => {
+interface AccueilProps {
+  onPageChange: (page: string) => void;
+}
+
+const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       {/* Hero */}
@@ -22,10 +26,16 @@ const Accueil: React.FC = () => {
               Nous gérons vos défis informatiques pour que vous puissiez vous concentrer sur votre business.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 px-2">
-              <button className="bg-[var(--brand-orange)] hover:opacity-95 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base">
+              <button
+                onClick={() => document.getElementById('nos-services')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-[var(--brand-orange)] hover:opacity-95 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
+              >
                 Nos services
               </button>
-              <button className="bg-white/20 hover:bg-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold backdrop-blur-sm transition-all duration-200 border border-white/30 text-sm sm:text-base">
+              <button
+                onClick={() => onPageChange('consultation')}
+                className="bg-white/20 hover:bg-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold backdrop-blur-sm transition-all duration-200 border border-white/30 text-sm sm:text-base"
+              >
                 Prendre rendez-vous
               </button>
             </div>
@@ -34,7 +44,7 @@ const Accueil: React.FC = () => {
       </header>
 
       {/* Ce que nous faisons */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section id="nos-services" className="py-12 sm:py-20 bg-white">
         <div className="w-full px-3 sm:px-4">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Ce que nous faisons</h2>
@@ -177,7 +187,10 @@ const Accueil: React.FC = () => {
               <p className="text-sm sm:text-base text-gray-600 mb-6">
                 En 30 minutes, nous analysons votre situation et vous disons honnêtement ce que l'informatique peut faire pour votre business. Gratuit et sans engagement.
               </p>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base">
+              <button
+                onClick={() => onPageChange('consultation')}
+                className="w-full bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base"
+              >
                 Demander mon audit gratuit
               </button>
             </div>
