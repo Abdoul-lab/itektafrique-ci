@@ -19,7 +19,7 @@ const Accueil: React.FC = () => {
               ITEKTAFRIQUE CÔTE D'IVOIRE
             </h1>
             <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 leading-relaxed px-2">
-              Votre partenaire informatique de confiance en Côte d'Ivoire
+              Nous gérons vos défis informatiques pour que vous puissiez vous concentrer sur votre business.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 px-2">
               <button className="bg-[var(--brand-orange)] hover:opacity-95 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base">
@@ -39,7 +39,7 @@ const Accueil: React.FC = () => {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Ce que nous faisons</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2">
-              Des services adaptés à vos besoins, quelle que soit la taille de votre structure
+              Des services conçus pour résoudre vos problèmes concrets, pas pour vous vendre de la technologie.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ const Accueil: React.FC = () => {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Développement Web & Mobile</h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Nous créons votre site web ou application mobile, de la conception à la mise en ligne.
+                Votre vitrine en ligne disponible 24h/24 — pour que vos clients vous trouvent, vous fassent confiance et vous contactent sans effort.
               </p>
             </div>
 
@@ -60,7 +60,7 @@ const Accueil: React.FC = () => {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Infrastructure IT</h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Nous installons, configurons et gérons votre réseau, vos serveurs et vos équipements informatiques.
+                Plus de pannes réseau qui paralysent votre équipe — nous installons et gérons votre infrastructure pour que vous travailliez sans interruption.
               </p>
             </div>
 
@@ -70,7 +70,7 @@ const Accueil: React.FC = () => {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Conseil & Formation</h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Nous formons vos équipes et vous aidons à prendre les bonnes décisions technologiques.
+                Vos équipes maîtrisent leurs outils et vous prenez les bonnes décisions technologiques — sans vous faire avoir.
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ const Accueil: React.FC = () => {
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Nos engagements</h2>
             <p className="text-base sm:text-lg md:text-xl opacity-90 max-w-3xl mx-auto px-2">
-              Nous mettons tout en œuvre pour vous offrir un service de qualité et des résultats concrets.
+              Ce que vous pouvez exiger de nous à chaque projet.
             </p>
           </div>
 
@@ -94,25 +94,25 @@ const Accueil: React.FC = () => {
               </div>
               <h3 className="text-lg text-[var(--brand-orange)] sm:text-2xl font-bold mb-3 sm:mb-4">Qualité garantie</h3>
               <p className="text-base opacity-90 px-2">
-                Nous livrons un travail soigné qui répond exactement à vos besoins.
+                Chaque livraison est testée — vous ne découvrez pas de mauvaises surprises après le paiement.
               </p>
             </div>
             <div className="text-center transform hover:scale-105 transition-transform duration-200">
               <div className="bg-white/10 p-4 sm:p-6 rounded-full w-fit mx-auto mb-4 sm:mb-6 backdrop-blur-sm">
                 <Users className="h-10 w-10 sm:h-12 sm:w-12 text-[var(--brand-dark)]" />
               </div>
-              <h3 className="text-lg text-[var(--brand-dark)] sm:text-2xl font-bold mb-3 sm:mb-4">Accompagnement personnalisé</h3>
+              <h3 className="text-lg text-[var(--brand-dark)] sm:text-2xl font-bold mb-3 sm:mb-4">Un seul interlocuteur</h3>
               <p className="text-base opacity-90 px-2">
-                Une équipe dédiée à vos côtés, de la première réunion jusqu'à la livraison finale.
+                Un interlocuteur unique qui connaît votre dossier — fini les explications à répéter à chaque appel.
               </p>
             </div>
             <div className="text-center transform hover:scale-105 transition-transform duration-200">
               <div className="bg-white/10 p-4 sm:p-6 rounded-full w-fit mx-auto mb-4 sm:mb-6 backdrop-blur-sm">
                 <Smartphone className="h-10 w-10 sm:h-12 sm:w-12 text-[var(--brand-blue)]" />
               </div>
-              <h3 className="text-lg text-[var(--brand-blue)] sm:text-2xl font-bold mb-3 sm:mb-4">Outils à jour</h3>
+              <h3 className="text-lg text-[var(--brand-blue)] sm:text-2xl font-bold mb-3 sm:mb-4">Durable dans le temps</h3>
               <p className="text-base opacity-90 px-2">
-                Nous utilisons des technologies récentes pour que votre solution soit performante et durable.
+                Ce que nous construisons aujourd'hui fonctionnera encore dans 5 ans — vous n'avez pas à tout recommencer dans 2 ans.
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ const Accueil: React.FC = () => {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Pourquoi nous choisir ?</h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              Ce qui fait la différence avec ITEKTAFRIQUE
+              Ce qui change concrètement pour vous quand vous travaillez avec ITEKTAFRIQUE
             </p>
           </div>
 
@@ -136,8 +136,8 @@ const Accueil: React.FC = () => {
                   <CheckCircle className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Tout sur mesure</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Nous ne vendons pas de solutions toutes faites. Chaque projet est unique, comme votre entreprise.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Vous ne payez que ce dont vous avez besoin</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Pas de fonctionnalités inutiles qui gonflent la facture — chaque euro investi a un usage concret.</p>
                 </div>
               </div>
 
@@ -146,8 +146,8 @@ const Accueil: React.FC = () => {
                   <Users className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Assistance disponible</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Notre équipe est joignable pour vous aider, même après la livraison de votre projet.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Votre projet n'est pas abandonné après livraison</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Nous restons joignables si quelque chose cloche — même après la fin du contrat.</p>
                 </div>
               </div>
 
@@ -156,19 +156,19 @@ const Accueil: React.FC = () => {
                   <Server className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Technologie fiable</h3>
-                  <p className="text-sm sm:text-base text-gray-600">Nos outils et méthodes sont à jour, pour vous livrer une solution qui tient dans le temps.</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Vous n'aurez pas à tout refaire dans 2 ans</h3>
+                  <p className="text-sm sm:text-base text-gray-600">Nous utilisons des outils qui durent — pas des technologies à la mode qui deviennent obsolètes rapidement.</p>
                 </div>
               </div>
             </div>
 
             <div className="bg-gradient-to-br from-blue-100 to-brand-orange/10 p-6 sm:p-8 rounded-2xl">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Passons à la suite ensemble ?</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Votre projet mérite un vrai diagnostic.</h3>
               <p className="text-sm sm:text-base text-gray-600 mb-6">
-                Contactez-nous pour un audit gratuit et sans engagement. Nous vous expliquerons clairement ce que nous pouvons faire pour vous.
+                En 30 minutes, nous analysons votre situation et vous disons honnêtement ce que l'informatique peut faire pour votre business. Gratuit et sans engagement.
               </p>
               <button className="w-full bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base">
-                Demander un audit gratuit
+                Demander mon audit gratuit
               </button>
             </div>
           </div>
