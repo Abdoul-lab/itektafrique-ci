@@ -1,6 +1,16 @@
 import React from 'react';
-import { Code, Users, Monitor, Phone, Mail, MapPin, CheckCircle, Server, Smartphone } from 'lucide-react';
+import { Code, Users, Monitor, Phone, Mail, MapPin, CheckCircle, Server, Smartphone, GraduationCap, Heart, ShoppingCart, Building2, Zap, Landmark, ArrowRight } from 'lucide-react';
 import { CONTACT } from '../constants/contact';
+
+const sectors = [
+  { icon: GraduationCap, label: 'Éducation', desc: 'Écoles, universités, plateformes e-learning' },
+  { icon: Building2,     label: 'PME & Entreprises', desc: 'Digitalisation et pilotage de l\'activité' },
+  { icon: Heart,         label: 'Santé', desc: 'Cliniques, laboratoires, gestion des patients' },
+  { icon: Landmark,      label: 'Administrations', desc: 'Modernisation et services aux citoyens' },
+  { icon: ShoppingCart,  label: 'Commerce & Distribution', desc: 'Vente en ligne, stocks et logistique' },
+  { icon: Users,         label: 'Sport & Associations', desc: 'Gestion des membres et des événements' },
+  { icon: Zap,           label: 'Startups & Innovation', desc: 'MVP, scalabilité et solutions IA' },
+];
 
 interface AccueilProps {
   onPageChange: (page: string) => void;
@@ -43,6 +53,25 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
         </div>
       </header>
 
+      {/* Bandeau diagnostic gratuit */}
+      <div className="bg-[var(--brand-blue)] text-white py-4 px-3 sm:px-4">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3 text-center sm:text-left">
+            <ArrowRight className="h-5 w-5 text-[var(--brand-orange)] flex-shrink-0 hidden sm:block" />
+            <div>
+              <span className="font-bold text-[var(--brand-orange)]">Diagnostic technologique gratuit</span>
+              <span className="text-sm opacity-90 ml-2">— Analysez votre situation sans engagement · Réponse sous 48h</span>
+            </div>
+          </div>
+          <button
+            onClick={() => onPageChange('consultation')}
+            className="bg-[var(--brand-orange)] hover:opacity-90 text-white px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 flex-shrink-0"
+          >
+            Demander le diagnostic
+          </button>
+        </div>
+      </div>
+
       {/* Ce que nous faisons */}
       <section id="nos-services" className="py-12 sm:py-20 bg-white">
         <div className="w-full px-3 sm:px-4">
@@ -82,6 +111,41 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                 Vos équipes maîtrisent leurs outils et vous prenez les bonnes décisions technologiques — sans vous faire avoir.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Secteurs d'intervention */}
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="w-full px-3 sm:px-4">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">Des solutions pour chaque secteur</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
+              Quel que soit votre domaine, nous adaptons nos solutions à vos réalités métier.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            {sectors.map(({ icon: Icon, label, desc }) => (
+              <div key={label} className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 hover:border-[var(--brand-orange)] group">
+                <div className="bg-orange-50 group-hover:bg-[var(--brand-orange)] p-3 rounded-xl w-fit mb-3 transition-colors duration-200">
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--brand-orange)] group-hover:text-white transition-colors duration-200" />
+                </div>
+                <h3 className="font-bold text-gray-800 text-sm sm:text-base mb-1">{label}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+            <div className="bg-[var(--brand-blue)] rounded-2xl p-4 sm:p-6 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="font-bold text-white text-sm sm:text-base mb-1">Votre secteur ?</h3>
+                <p className="text-xs sm:text-sm text-blue-200 leading-relaxed">Il n'est pas listé ? Parlons-en — nous nous adaptons.</p>
+              </div>
+              <button
+                onClick={() => onPageChange('consultation')}
+                className="mt-3 text-[var(--brand-orange)] text-xs sm:text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all duration-200"
+              >
+                Contactez-nous <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+              </button>
             </div>
           </div>
         </div>
