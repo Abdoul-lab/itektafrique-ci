@@ -24,123 +24,229 @@ export interface QuestionNode {
 
 export const iaScenarios: Record<string, IaScenario> = {
   menu: {
-    text: `Bonjour 👋 ! Je suis là pour vous aider.
+    text: `Bonjour 👋 ! Je suis ITEBOT, l'assistant d'ITEKTAFRIQUE CI.
 
-1️⃣ Nos formations
-2️⃣ Accompagnement entreprises & indépendants
-3️⃣ Conseils personnalisés
+1️⃣ Nos offres & services
+2️⃣ Nos domaines d'expertise
+3️⃣ Questions fréquentes
 4️⃣ Prendre rendez-vous
-5️⃣ Autres questions
 
-Tapez le numéro ou un mot-clé. Tapez "Menu" pour revenir ici à tout moment.`,
+Tapez un numéro ou un mot-clé. Tapez "Menu" pour revenir ici à tout moment.`,
     options: [
-      { keywords: ['1', 'formation', 'formations'], next: 'formations' },
-      { keywords: ['2', 'accompagnement'], next: 'accompagnement' },
-      { keywords: ['3', 'conseil', 'conseils'], next: 'conseils' },
-      { keywords: ['4', 'rdv', 'rendez-vous', 'prendre rendez-vous'], next: 'rdv' },
-      { keywords: ['5', 'autre', 'autres'], next: 'faq' },
+      { keywords: ['1', 'offre', 'offres', 'service', 'services', 'solution'], next: 'offres' },
+      { keywords: ['2', 'domaine', 'domaines', 'expertise'], next: 'domaines' },
+      { keywords: ['3', 'question', 'questions', 'faq', 'aide'], next: 'faq' },
+      { keywords: ['4', 'rdv', 'rendez-vous', 'prendre', 'contact'], next: 'rdv' },
     ],
   },
-  formations: {
-    text: `Nos formations disponibles :
 
-• SST (Sauveteur Secouriste du Travail)
-• Sécurité et prévention des risques au travail
-• Secourisme pour particuliers et entreprises
+  offres: {
+    text: `Nos 7 offres, adaptées à chaque profil :
 
-Ces formations vous intéressent ?
-1️⃣ Sont-elles certifiantes ?
-2️⃣ Revenir au menu`,
+🌐 Starter Digital — Site pro en 2 à 4 semaines (PME, Startup)
+📈 Croissance PME — Digitalisez et vendez 24h/24 ⭐ Populaire
+⚡ MVP Startup — De l'idée au produit en 4 à 8 semaines
+🏢 Enterprise 360 — Centralisez et automatisez votre SI
+🏛️ Numérique Public — Modernisez vos services aux citoyens
+🤖 Intelligence IA — Automatisez vos tâches avec l'IA
+☁️ Sérénité Cloud — Hébergement et maintenance sereine
+
+1️⃣ Starter Digital / Croissance PME
+2️⃣ MVP Startup
+3️⃣ Enterprise 360 / Numérique Public
+4️⃣ Intelligence IA / Sérénité Cloud
+5️⃣ Prendre rendez-vous
+6️⃣ Revenir au menu`,
     options: [
-      { keywords: ['1', 'oui'], next: 'formations_certif' },
-      { keywords: ['2', 'non', 'menu', 'revenir'], next: 'menu' },
+      { keywords: ['1', 'starter', 'croissance', 'pme', 'site'], next: 'offres_web' },
+      { keywords: ['2', 'mvp', 'startup', 'produit'], next: 'offres_mvp' },
+      { keywords: ['3', 'enterprise', 'numérique', 'public', 'institution'], next: 'offres_enterprise' },
+      { keywords: ['4', 'ia', 'intelligence', 'cloud', 'serenite', 'sérénité'], next: 'offres_ia' },
+      { keywords: ['5', 'rdv', 'rendez-vous', 'diagnostic'], next: 'rdv' },
+      { keywords: ['6', 'menu', 'revenir'], next: 'menu' },
     ],
   },
-  formations_certif: {
-    text: `Oui ✅ Toutes nos formations SST et secourisme sont certifiantes et reconnues par la réglementation en vigueur.
 
-Tapez "Menu" pour revenir au menu principal.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
-  },
-  accompagnement: {
-    text: `Notre accompagnement comprend :
+  offres_web: {
+    text: `🌐 Starter Digital
+Site professionnel 5 pages · Domaine + hébergement 1 an · SEO de base · Support 3 mois.
+→ Vos clients vous trouvent en ligne dès le lancement.
 
-• Analyse des risques dans votre entreprise
-• Mise en place de mesures de sécurité adaptées
-• Formation de vos employés et plan de prévention
+📈 Croissance PME ⭐
+Site pro + boutique e-commerce + CRM + application mobile + paiement Mobile Money.
+→ Vendez 24h/24 et pilotez tout depuis une seule plateforme.
 
-Nous déplaçons-nous sur site ?
-1️⃣ Oui, je veux savoir
-2️⃣ Revenir au menu`,
+Tapez "RDV" pour votre diagnostic gratuit ou "Menu" pour revenir.`,
     options: [
-      { keywords: ['1', 'oui'], next: 'accompagnement_site' },
-      { keywords: ['2', 'non', 'menu', 'revenir'], next: 'menu' },
+      { keywords: ['rdv', 'rendez-vous', 'diagnostic'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
     ],
   },
-  accompagnement_site: {
-    text: `Oui, nos équipes peuvent se déplacer dans vos locaux pour former vos collaborateurs et évaluer vos équipements.
 
-Tapez "Menu" pour revenir.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
-  },
-  conseils: {
-    text: `Nos conseils sont adaptés à votre situation :
+  offres_mvp: {
+    text: `⚡ MVP Startup
+Conception UX/UI · Développement web ou mobile · Intégration IA · Hébergement cloud 6 mois inclus.
+→ Testez votre marché et convainquez vos investisseurs avec un vrai produit, pas des slides.
 
-• Particuliers
-• Indépendants
-• Associations
+Délai de livraison rapide garanti — idéal avant une levée de fonds.
 
-Voulez-vous fixer un rendez-vous ?
-1️⃣ Oui
-2️⃣ Revenir au menu`,
+Tapez "RDV" pour un échange gratuit ou "Menu" pour revenir.`,
     options: [
-      { keywords: ['1', 'oui'], next: 'rdv' },
-      { keywords: ['2', 'non', 'menu', 'revenir'], next: 'menu' },
+      { keywords: ['rdv', 'rendez-vous', 'diagnostic'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
     ],
   },
-  rdv: {
-    text: `Vous pouvez nous joindre de plusieurs façons :
 
-1️⃣ Formulaire en ligne
-2️⃣ Par téléphone
-3️⃣ Par e-mail
+  offres_enterprise: {
+    text: `🏢 Enterprise 360
+ERP personnalisé · Intégration APIs · Automatisation RPA · IA embarquée · Cloud dédié · Support 24/7.
+→ Toutes vos données centralisées, vos tâches automatisées, vos décisions basées sur vos vrais chiffres.
 
-Nos horaires : lundi au vendredi, 8h – 18h.
+🏛️ Numérique Public
+Portail citoyen · OCR intelligent · Gestion des dossiers · Formation agents.
+→ Adapté aux marchés publics et appels d'offres.
 
-Tapez "Menu" pour revenir.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
+Tapez "RDV" pour planifier un audit ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['rdv', 'rendez-vous', 'audit'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
   },
+
+  offres_ia: {
+    text: `🤖 Intelligence IA
+Chatbot 24/7 · OCR intelligent · Automatisation RPA · Analyse prédictive · Dashboard temps réel.
+→ Vos tâches répétitives exécutées sans erreur, vos décisions basées sur des données réelles.
+Offre modulaire — choisissez uniquement ce dont vous avez besoin.
+
+☁️ Sérénité Cloud
+Hébergement sécurisé · Sauvegardes automatiques · Maintenance préventive · Supervision continue.
+→ Concentrez-vous sur votre métier, on s'occupe du reste.
+
+Tapez "RDV" pour un diagnostic IA gratuit ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['rdv', 'rendez-vous', 'diagnostic'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
+  },
+
+  domaines: {
+    text: `Nos 6 domaines d'expertise :
+
+🌐 Web & E-commerce — Sites vitrines, boutiques, portails
+💼 Logiciels métier & IA — ERP, CRM, chatbots, OCR, RPA
+📱 Applications mobiles — Android & iOS, apps terrain
+✅ Qualité & Tests — Validation avant mise en ligne
+🔗 Infrastructure & Réseau — Connexion, sécurité, vidéosurveillance
+☁️ Cloud & Maintenance — Hébergement, sauvegardes, supervision
+
+Nous intervenons dans 7 secteurs : PME, Éducation, Santé, Administration, Commerce, Sport/Associations, Startups.
+
+Tapez "Offres" pour voir nos formules ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['offre', 'offres', 'formule'], next: 'offres' },
+      { keywords: ['rdv', 'rendez-vous'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
+  },
+
   faq: {
     text: `Questions fréquentes :
 
-1️⃣ Quels types d'entreprises accompagnez-vous ?
-2️⃣ Intervenez-vous partout en Afrique ?
-3️⃣ Quels sont vos tarifs ?
-4️⃣ Revenir au menu`,
+1️⃣ Quels secteurs accompagnez-vous ?
+2️⃣ Quels sont vos délais ?
+3️⃣ Comment fonctionne le diagnostic gratuit ?
+4️⃣ Vos tarifs ?
+5️⃣ Revenir au menu`,
     options: [
-      { keywords: ['1', 'type', 'entreprise'], next: 'faq_entreprises' },
-      { keywords: ['2', 'afrique', 'disponible'], next: 'faq_afrique' },
-      { keywords: ['3', 'prix', 'tarif', 'coût', 'cout'], next: 'faq_tarifs' },
-      { keywords: ['4', 'menu', 'revenir'], next: 'menu' },
+      { keywords: ['1', 'secteur', 'secteurs', 'domaine'], next: 'faq_secteurs' },
+      { keywords: ['2', 'delai', 'délai', 'temps', 'durée', 'duree'], next: 'faq_delais' },
+      { keywords: ['3', 'diagnostic', 'gratuit', 'comment'], next: 'faq_diagnostic' },
+      { keywords: ['4', 'tarif', 'tarifs', 'prix', 'coût', 'cout'], next: 'faq_tarifs' },
+      { keywords: ['5', 'menu', 'revenir'], next: 'menu' },
     ],
   },
-  faq_entreprises: {
-    text: `Nous travaillons avec toutes les tailles d'entreprises : PME, grandes entreprises, industrie, BTP, services, commerces.
+
+  faq_secteurs: {
+    text: `Nous intervenons dans 7 secteurs :
+
+• PME & Grandes entreprises
+• Éducation (écoles, universités, e-learning)
+• Santé (cliniques, laboratoires)
+• Administrations publiques & collectivités
+• Commerce & Distribution
+• Sport & Associations
+• Startups & Innovation
+
+Votre secteur n'est pas listé ? Contactez-nous — nous nous adaptons.
 
 Tapez "Menu" pour revenir.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
+    options: [
+      { keywords: ['rdv', 'rendez-vous', 'contact'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
   },
-  faq_afrique: {
-    text: `Nos services couvrent toute la Côte d'Ivoire. Nous pouvons aussi intervenir dans certains pays voisins selon les besoins.
 
-Tapez "Menu" pour revenir.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
+  faq_delais: {
+    text: `Nos délais selon l'offre :
+
+• Starter Digital : 2 à 4 semaines
+• Croissance PME : 6 à 12 semaines
+• MVP Startup : 4 à 8 semaines
+• Enterprise 360 / Numérique Public : sur mesure
+• Intelligence IA : modulaire selon les besoins
+• Sérénité Cloud : mise en place en 1 à 2 semaines
+
+Tapez "RDV" pour démarrer ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['rdv', 'rendez-vous'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
   },
+
+  faq_diagnostic: {
+    text: `Le diagnostic gratuit, c'est un échange de 30 minutes avec un de nos experts.
+
+Vous décrivez votre situation, vos besoins et votre budget. Nous vous proposons une feuille de route concrète — sans engagement et sous 48h.
+
+Tapez "RDV" pour planifier le vôtre ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['rdv', 'rendez-vous', 'planifier', 'oui'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
+  },
+
   faq_tarifs: {
-    text: `Nos tarifs varient selon la formation, sa durée et le nombre de participants. Les devis sont gratuits et personnalisés.
+    text: `Toutes nos offres sont "sur devis" — le tarif dépend de votre périmètre et de vos priorités.
+
+Quelques repères :
+• Starter Digital : accessible aux TPE et startups
+• Croissance PME : périmètre ajustable selon votre budget
+• Sérénité Cloud : à partir d'un contrat mensuel
+
+Le diagnostic gratuit permet d'établir une proposition adaptée à votre budget réel.
+
+Tapez "RDV" pour en savoir plus ou "Menu" pour revenir.`,
+    options: [
+      { keywords: ['rdv', 'rendez-vous'], next: 'rdv' },
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
+  },
+
+  rdv: {
+    text: `Pour prendre rendez-vous :
+
+📋 Formulaire en ligne → page "Consultation" du site
+📞 Téléphone : ${CONTACT.phone}
+✉️ Email : ${CONTACT.email}
+🌐 Site : ${CONTACT.website}
+
+Ou utilisez l'onglet "Prendre RDV" ci-dessus pour un formulaire guidé.
 
 Tapez "Menu" pour revenir.`,
-    options: [{ keywords: ['menu'], next: 'menu' }],
+    options: [
+      { keywords: ['menu', 'revenir'], next: 'menu' },
+    ],
   },
 };
 
@@ -171,82 +277,98 @@ export const questionFlow: Record<string, QuestionNode> = {
     text: 'Merci. Vous êtes :',
     type: 'select',
     options: [
-      'Personne morale (Entreprise/Association)',
-      "Employé d'entreprise",
-      'Travailleur indépendant/auto-entrepreneur',
-      'Étudiant/stagiaire',
-      'Association/collectivité',
-      "Demandeur d'emploi",
-      'Patient',
-      'Autres',
+      'Entreprise / PME',
+      'Grande entreprise',
+      'Startup / Porteur de projet',
+      'Institution / Administration',
+      'Indépendant / Freelance',
+      'Autre',
     ],
     next: (form) => {
       switch (form.company_type) {
-        case 'Personne morale (Entreprise/Association)':
-          return 'company_activity';
-        case "Employé d'entreprise":
-          return 'employee_company';
-        case 'Travailleur indépendant/auto-entrepreneur':
-          return 'independant_name';
-        case 'Étudiant/stagiaire':
-          return 'student_name';
-        case 'Association/collectivité':
-          return 'collectivity_your_name';
-        case "Demandeur d'emploi":
-          return 'jobseeker_name';
-        default:
-          return null;
+        case 'Entreprise / PME':        return 'pme_name';
+        case 'Grande entreprise':       return 'enterprise_name';
+        case 'Startup / Porteur de projet': return 'startup_project';
+        case 'Institution / Administration': return 'institution_name';
+        case 'Indépendant / Freelance': return 'independant_name';
+        default:                        return 'other_name';
       }
     },
   },
 
-  // Personne morale
-  company_activity: { key: 'company_activity', text: "💼 Domaine d'activités *", type: 'text', next: 'company_staff' },
-  company_staff: { key: 'company_staff', text: '🔢 Effectif du personnel *', type: 'text', next: 'company_location' },
-  company_location: { key: 'company_location', text: '📍 Situation géographique *', type: 'text', next: 'company_referent' },
-  company_referent: { key: 'company_referent', text: '👔 Nom du référent sécurité / RH *', type: 'text', next: 'company_phone' },
-  company_phone: { key: 'company_phone', text: '☎️ Téléphone *', type: 'text', next: 'company_email' },
-  company_email: { key: 'company_email', text: '📩 E-mail *', type: 'text', next: null },
+  // Entreprise / PME
+  pme_name: { key: 'pme_name', text: "🏢 Nom de votre entreprise *", type: 'text', next: 'pme_sector' },
+  pme_sector: { key: 'pme_sector', text: "💼 Secteur d'activité *", type: 'text', next: 'pme_service' },
+  pme_service: {
+    key: 'pme_service',
+    text: "🛠️ Quel service vous intéresse ? *",
+    type: 'select',
+    options: ['Starter Digital', 'Croissance PME', 'Intelligence IA', 'Sérénité Cloud', 'Autre / Je ne sais pas encore'],
+    next: 'pme_contact',
+  },
+  pme_contact: { key: 'pme_contact', text: "👤 Votre nom et prénom *", type: 'text', next: 'pme_email' },
+  pme_email: { key: 'pme_email', text: "📩 Email *", type: 'text', next: 'pme_phone' },
+  pme_phone: { key: 'pme_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 
-  // Employé d'entreprise
-  employee_company: { key: 'employee_company', text: "Nom de votre entreprise *", type: 'text', next: 'employee_job' },
-  employee_job: { key: 'employee_job', text: 'Poste occupé *', type: 'text', next: 'employee_address' },
-  employee_address: { key: 'employee_address', text: 'Adresse de votre lieu de travail *', type: 'text', next: 'employee_training' },
-  employee_training: { key: 'employee_training', text: 'Quelle formation sécurité souhaitez-vous suivre ? *', type: 'text', next: 'employee_name' },
-  employee_name: { key: 'employee_name', text: 'Nom et prénoms *', type: 'text', next: 'employee_email' },
-  employee_email: { key: 'employee_email', text: 'Email *', type: 'text', next: 'employee_contact' },
-  employee_contact: { key: 'employee_contact', text: 'Contact *', type: 'text', next: null },
+  // Grande entreprise
+  enterprise_name: { key: 'enterprise_name', text: "🏢 Nom de votre entreprise *", type: 'text', next: 'enterprise_sector' },
+  enterprise_sector: { key: 'enterprise_sector', text: "💼 Secteur d'activité *", type: 'text', next: 'enterprise_service' },
+  enterprise_service: {
+    key: 'enterprise_service',
+    text: "🛠️ Quel service vous intéresse ? *",
+    type: 'select',
+    options: ['Enterprise 360', 'Intelligence IA', 'Sérénité Cloud', 'Développement sur mesure', 'Autre / Je ne sais pas encore'],
+    next: 'enterprise_contact',
+  },
+  enterprise_contact: { key: 'enterprise_contact', text: "👤 Votre nom et prénom *", type: 'text', next: 'enterprise_email' },
+  enterprise_email: { key: 'enterprise_email', text: "📩 Email *", type: 'text', next: 'enterprise_phone' },
+  enterprise_phone: { key: 'enterprise_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 
-  // Travailleur indépendant
-  independant_name: { key: 'independant_name', text: 'Nom et prénoms *', type: 'text', next: 'independant_activity' },
-  independant_activity: { key: 'independant_activity', text: "💼 Domaine d'activités *", type: 'text', next: 'independant_function' },
-  independant_function: { key: 'independant_function', text: "Fonction d'exercice *", type: 'text', next: 'independant_email' },
-  independant_email: { key: 'independant_email', text: 'Email *', type: 'text', next: 'independant_contact' },
-  independant_contact: { key: 'independant_contact', text: 'Contact *', type: 'text', next: 'independant_certif' },
-  independant_certif: { key: 'independant_certif', text: 'Formation(s) ou service(s) souhaité(s) (optionnel)', type: 'text', next: null },
+  // Startup / Porteur de projet
+  startup_project: { key: 'startup_project', text: "💡 Nom ou description de votre projet *", type: 'text', next: 'startup_service' },
+  startup_service: {
+    key: 'startup_service',
+    text: "🛠️ Quel service vous intéresse ? *",
+    type: 'select',
+    options: ['MVP Startup', 'Starter Digital', 'Intelligence IA', 'Autre / Je ne sais pas encore'],
+    next: 'startup_name',
+  },
+  startup_name: { key: 'startup_name', text: "👤 Votre nom et prénom *", type: 'text', next: 'startup_email' },
+  startup_email: { key: 'startup_email', text: "📩 Email *", type: 'text', next: 'startup_phone' },
+  startup_phone: { key: 'startup_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 
-  // Étudiant/stagiaire
-  student_name: { key: 'student_name', text: 'Nom et prénoms *', type: 'text', next: 'student_school' },
-  student_school: { key: 'student_school', text: 'Établissement de formation *', type: 'text', next: 'student_field' },
-  student_field: { key: 'student_field', text: 'Filière / diplôme préparé *', type: 'text', next: 'student_certif' },
-  student_certif: { key: 'student_certif', text: 'Formation certifiante souhaitée *', type: 'text', next: 'student_email' },
-  student_email: { key: 'student_email', text: 'Email *', type: 'text', next: 'student_phone' },
-  student_phone: { key: 'student_phone', text: 'Téléphone *', type: 'text', next: null },
+  // Institution / Administration
+  institution_name: { key: 'institution_name', text: "🏛️ Nom de votre institution *", type: 'text', next: 'institution_type' },
+  institution_type: { key: 'institution_type', text: "📋 Type (Ministère, Mairie, École, Hôpital…) *", type: 'text', next: 'institution_service' },
+  institution_service: {
+    key: 'institution_service',
+    text: "🛠️ Quel service vous intéresse ? *",
+    type: 'select',
+    options: ['Numérique Public', 'Enterprise 360', 'Intelligence IA', 'Autre / Je ne sais pas encore'],
+    next: 'institution_contact',
+  },
+  institution_contact: { key: 'institution_contact', text: "👤 Votre nom et prénom *", type: 'text', next: 'institution_email' },
+  institution_email: { key: 'institution_email', text: "📩 Email *", type: 'text', next: 'institution_phone' },
+  institution_phone: { key: 'institution_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 
-  // Association/collectivité
-  collectivity_your_name: { key: 'collectivity_your_name', text: 'Votre nom *', type: 'text', next: 'collectivity_status' },
-  collectivity_status: { key: 'collectivity_status', text: 'Votre statut (Collectivité, Association, Autre) *', type: 'text', next: 'collectivity_activity' },
-  collectivity_activity: { key: 'collectivity_activity', text: "Type d'activité *", type: 'text', next: 'collectivity_responsible' },
-  collectivity_responsible: { key: 'collectivity_responsible', text: 'Nom du responsable *', type: 'text', next: 'collectivity_email' },
-  collectivity_email: { key: 'collectivity_email', text: 'Email *', type: 'text', next: 'collectivity_phone' },
-  collectivity_phone: { key: 'collectivity_phone', text: 'Téléphone *', type: 'text', next: null },
+  // Indépendant / Freelance
+  independant_name: { key: 'independant_name', text: "👤 Votre nom et prénom *", type: 'text', next: 'independant_activity' },
+  independant_activity: { key: 'independant_activity', text: "💼 Votre activité *", type: 'text', next: 'independant_service' },
+  independant_service: {
+    key: 'independant_service',
+    text: "🛠️ Quel service vous intéresse ? *",
+    type: 'select',
+    options: ['Starter Digital', 'MVP Startup', 'Intelligence IA', 'Autre / Je ne sais pas encore'],
+    next: 'independant_email',
+  },
+  independant_email: { key: 'independant_email', text: "📩 Email *", type: 'text', next: 'independant_phone' },
+  independant_phone: { key: 'independant_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 
-  // Demandeur d'emploi
-  jobseeker_name: { key: 'jobseeker_name', text: 'Nom et prénoms *', type: 'text', next: 'jobseeker_address' },
-  jobseeker_address: { key: 'jobseeker_address', text: 'Adresse *', type: 'text', next: 'jobseeker_registered' },
-  jobseeker_registered: { key: 'jobseeker_registered', text: 'Êtes-vous inscrit à EMPLOI JEUNE ? (OUI/NON) *', type: 'text', next: 'jobseeker_certif' },
-  jobseeker_certif: { key: 'jobseeker_certif', text: 'Quelle formation certifiante souhaitez-vous ?', type: 'text', next: 'jobseeker_phone' },
-  jobseeker_phone: { key: 'jobseeker_phone', text: 'Téléphone *', type: 'text', next: null },
+  // Autre
+  other_name: { key: 'other_name', text: "👤 Votre nom et prénom *", type: 'text', next: 'other_need' },
+  other_need: { key: 'other_need', text: "💬 Décrivez votre besoin *", type: 'text', next: 'other_email' },
+  other_email: { key: 'other_email', text: "📩 Email *", type: 'text', next: 'other_phone' },
+  other_phone: { key: 'other_phone', text: "☎️ Téléphone *", type: 'text', next: null },
 };
 
 // ---- Utilities ----
@@ -268,21 +390,22 @@ export const getFormValue = (keys: string[], form: Record<string, string>): stri
 
 export const accueilLines: string[] = [
   '',
-  '👋 Bienvenue chez ITEKTAFRIQUE CÔTE D\'IVOIRE !',
+  "👋 Bienvenue chez ITEKTAFRIQUE CÔTE D'IVOIRE !",
   '',
-  'Nous vous aidons à construire et gérer vos outils informatiques.',
+  'Nous digitalisons votre activité — de la création de site',
+  "à l'intégration de l'IA dans vos processus métier.",
   '',
-  'Ce que nous pouvons faire pour vous :',
-  '• Créer votre site internet ou application mobile',
-  '• Installer et gérer votre réseau informatique',
-  '• Vous accompagner vers le numérique, étape par étape',
-  '• Former vos équipes aux outils informatiques',
-  '• Planifier un rendez-vous avec nos conseillers',
+  'Nos offres :',
+  '🌐 Starter Digital — Votre site pro en 2 à 4 semaines',
+  '📈 Croissance PME — Vendez 24h/24, pilotez tout en un',
+  "⚡ MVP Startup — De l'idée au produit en 8 semaines",
+  '🏢 Enterprise 360 — Centralisez et automatisez votre SI',
+  '🤖 Intelligence IA — Automatisez vos tâches répétitives',
+  '☁️ Sérénité Cloud — Hébergement et maintenance sereins',
   '',
-  'Nos coordonnées :',
+  'Diagnostic gratuit · Réponse sous 48h',
   `📞 ${CONTACT.phone}`,
   `✉️ ${CONTACT.email}`,
-  `🌐 ${CONTACT.website}`,
   '',
-  'Cliquez ci-dessous pour évaluer vos besoins 👇',
+  'Cliquez sur "Prendre RDV" pour démarrer 👇',
 ];
