@@ -19,7 +19,7 @@ export default function CursorHint({ cards = 3 }: CursorHintProps) {
   const pct = (100 / cards) * phase + 100 / cards / 2;
 
   return (
-    <>
+    <div className="hidden lg:block">
       <style>{`
         @keyframes cursor-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
         @keyframes ripple-out { 0% { transform: scale(0.3); opacity: 0.7; } 100% { transform: scale(1.8); opacity: 0; } }
@@ -27,7 +27,7 @@ export default function CursorHint({ cards = 3 }: CursorHintProps) {
         .c-ripple { animation: ripple-out 0.6s ease-out forwards; }
       `}</style>
       <div
-        className="absolute top-1/2 -translate-y-10 pointer-events-none z-20 transition-all duration-700 ease-in-out"
+        className="absolute top-1/2 pointer-events-none z-20 transition-all duration-700 ease-in-out"
         style={{ left: `${pct}%`, transform: `translateX(-50%) translateY(-2rem)` }}
       >
         <div key={phase} className="c-ripple absolute -top-3 -left-3 w-10 h-10 rounded-full border-2 border-[var(--brand-orange)]" />
@@ -46,6 +46,6 @@ export default function CursorHint({ cards = 3 }: CursorHintProps) {
           Cliquez !
         </span>
       </div>
-    </>
+    </div>
   );
 }
