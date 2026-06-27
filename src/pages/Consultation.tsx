@@ -29,6 +29,7 @@ const Consultation: React.FC = () => {
     preferredDate: '',
     preferredTime: '',
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleServiceCardClick = (serviceId: string) => {
     setSelectedService(serviceId);
@@ -48,7 +49,22 @@ const Consultation: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Votre demande a bien été envoyée ! Nous vous contacterons dans les plus brefs délais.');
+    const lines = [
+      `Nom : ${formData.name}`,
+      formData.company ? `Entreprise : ${formData.company}` : '',
+      `Email : ${formData.email}`,
+      `Téléphone : ${formData.phone}`,
+      formData.profile ? `Profil : ${formData.profile}` : '',
+      formData.service ? `Service souhaité : ${formData.service}` : '',
+      formData.preferredDate ? `Date souhaitée : ${formData.preferredDate}` : '',
+      formData.preferredTime ? `Heure souhaitée : ${formData.preferredTime}` : '',
+      formData.message ? `\nMessage :\n${formData.message}` : '',
+    ].filter(Boolean).join('\n');
+
+    const subject = encodeURIComponent(`Demande de consultation — ${formData.service || 'Non précisé'} — ${formData.name}`);
+    const body = encodeURIComponent(lines);
+    window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
   return (
@@ -413,14 +429,31 @@ const Consultation: React.FC = () => {
                   />
                 </div>
 
-                <div className="text-center">
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1"
-                  >
-                    Envoyer ma demande
-                  </button>
-                </div>
+                {submitted ? (
+                  <div className="text-center bg-green-50 border border-green-200 rounded-xl p-6">
+                    <div className="text-3xl mb-2">✉️</div>
+                    <p className="font-semibold text-green-700 text-lg">Votre client email s'est ouvert</p>
+                    <p className="text-green-600 text-sm mt-1">
+                      Vérifiez qu'il s'est bien ouvert et cliquez sur Envoyer. Le message partira directement à {CONTACT.email}.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="mt-4 text-sm text-blue-600 underline"
+                    >
+                      Nouvelle demande
+                    </button>
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1"
+                    >
+                      Envoyer ma demande
+                    </button>
+                  </div>
+                )}
               </form>
             </div>
               </div>{/* end form side */}
@@ -485,9 +518,9 @@ const Consultation: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <MapPin className="h-6 w-6 sm:h-8 sm:w-8 text-[var(--brand-blue)] flex-shrink-0" />
                 <div className="text-center sm:text-left">
-                  <p className="font-semibold text-[var(--brand-blue)] text-sm sm:text-base">Notre site web</p>
+                  <p className="font-semibold text-[var(--brand-blue)] text-sm sm:text-base">Landing page</p>
                   <p className="text-base sm:text-lg">
-                    <a href={CONTACT.websiteUrl} className="italic underline">{CONTACT.website}</a>
+                    <a href={CONTACT.websiteUrl} target="_blank" rel="noopener noreferrer" className="italic underline hover:text-[var(--brand-blue)] transition-colors">{CONTACT.website}</a>
                   </p>
                 </div>
               </div>

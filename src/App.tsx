@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Accueil from './pages/Accueil';
 import Consultation from './pages/Consultation';
-import OutilsRessources from './pages/OutilsRessources';
 import Chatbot from './components/Chatbot';
 
 function App() {
@@ -22,9 +21,7 @@ function App() {
         return <Accueil onPageChange={setCurrentPage} />;
       case 'consultation':
         return <Consultation />;
-      case 'outils':
-        return <OutilsRessources onPageChange={setCurrentPage} />;
-      default:
+default:
         return <Accueil />;
     }
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Code, Users, Monitor, Phone, Mail, MapPin,
   CheckCircle, Server, Smartphone,
@@ -8,6 +8,101 @@ import {
 import { CONTACT } from '../constants/contact';
 import { useInView } from '../hooks/useInView';
 import TechIllustration from '../components/TechIllustration';
+
+const techAnecdotes = [
+  { icon: '💡', text: 'ChatGPT a atteint 1 milliard d\'utilisateurs en moins de 2 ans' },
+  { icon: '🌍', text: 'L\'Afrique comptera 1,5 milliard d\'internautes d\'ici 2030' },
+  { icon: '🤖', text: 'En 2025, l\'IA génère 10 % du code mondial en production' },
+  { icon: '🏆', text: 'L\'Afrique de l\'Ouest est le marché fintech à la croissance la plus rapide' },
+  { icon: '🔐', text: 'Une cyberattaque survient toutes les 39 secondes dans le monde' },
+];
+
+const WMO_ICONS: Record<number, string> = {
+  0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+  45: '🌫️', 48: '🌫️',
+  51: '🌦️', 53: '🌦️', 55: '🌧️',
+  61: '🌧️', 63: '🌧️', 65: '🌧️',
+  80: '🌦️', 81: '🌧️', 82: '⛈️',
+  95: '⛈️', 96: '⛈️', 99: '⛈️',
+};
+
+function getWmoIcon(code: number): string {
+  return WMO_ICONS[code] ?? '🌡️';
+}
+
+function formatDateAbidjan(): string {
+  return new Date().toLocaleDateString('fr-FR', {
+    weekday: 'short', day: 'numeric', month: 'short',
+    timeZone: 'Africa/Abidjan',
+  });
+}
+
+function RotatingBadge() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [weather, setWeather] = useState<{ temp: number; icon: string } | null>(null);
+  const [hnNews, setHnNews] = useState<Array<{ icon: string; text: string }>>([]);
+
+  useEffect(() => {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=5.3599&longitude=-4.0083&current=temperature_2m,weathercode&timezone=Africa%2FAbidjan')
+      .then(r => r.json())
+      .then(d => setWeather({
+        temp: Math.round(d.current.temperature_2m),
+        icon: getWmoIcon(d.current.weathercode),
+      }))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+      .then(r => r.json())
+      .then((ids: number[]) =>
+        Promise.all(ids.slice(0, 4).map(id =>
+          fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r => r.json())
+        ))
+      )
+      .then(stories => {
+        setHnNews(
+          stories
+            .filter((s): s is { title: string } => !!s?.title)
+            .map(s => ({ icon: '📰', text: s.title.length > 70 ? s.title.slice(0, 67) + '…' : s.title }))
+        );
+      })
+      .catch(() => {});
+  }, []);
+
+  const slides = [
+    {
+      icon: '📍',
+      text: weather
+        ? `Abidjan — ${formatDateAbidjan()}  ${weather.icon} ${weather.temp}°C`
+        : `Abidjan — ${formatDateAbidjan()}`,
+    },
+    ...techAnecdotes,
+    ...hnNews,
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex(i => (i + 1) % slides.length);
+        setVisible(true);
+      }, 400);
+    }, 9000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  const { icon, text } = slides[index];
+  return (
+    <span
+      className="text-sm font-medium transition-opacity duration-500"
+      style={{ opacity: visible ? 0.9 : 0 }}
+    >
+      {icon} {text}
+    </span>
+  );
+}
 
 const sectors = [
   { icon: GraduationCap, label: 'Éducation',              desc: "Écoles, universités, plateformes e-learning" },
@@ -110,9 +205,9 @@ const whyUs = [
 ];
 
 const contactCards = [
-  { bg: 'from-blue-50 to-blue-100',     iconBg: 'bg-blue-500',              Icon: Phone,  title: 'Téléphone',    value: CONTACT.phone,   delay: 'delay-100' },
-  { bg: 'from-orange-50 to-orange-100', iconBg: 'bg-[var(--brand-orange)]', Icon: Mail,   title: 'Email',        value: CONTACT.email,   delay: 'delay-200' },
-  { bg: 'from-purple-50 to-purple-100', iconBg: 'bg-purple-500',            Icon: MapPin, title: 'Notre site web', value: CONTACT.website, delay: 'delay-300' },
+  { bg: 'from-blue-50 to-blue-100',     iconBg: 'bg-blue-500',              Icon: Phone,  title: 'Téléphone',    value: CONTACT.phone,   href: `tel:${CONTACT.phone.replace(/\s/g, '')}`, delay: 'delay-100' },
+  { bg: 'from-orange-50 to-orange-100', iconBg: 'bg-[var(--brand-orange)]', Icon: Mail,   title: 'Email',        value: CONTACT.email,   href: `mailto:${CONTACT.email}`,                 delay: 'delay-200' },
+  { bg: 'from-purple-50 to-purple-100', iconBg: 'bg-purple-500',            Icon: MapPin, title: 'Landing page', value: CONTACT.website, href: CONTACT.websiteUrl,                        delay: 'delay-300' },
 ];
 
 interface AccueilProps {
@@ -157,9 +252,9 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
             {/* Left: text */}
             <div className="text-center lg:text-left">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-in-up max-w-full overflow-hidden">
                 <span className="w-2 h-2 bg-[var(--brand-orange)] rounded-full animate-pulse-soft inline-block flex-shrink-0" />
-                <span className="text-sm font-medium opacity-90">Catalogue 2026 disponible</span>
+                <RotatingBadge />
               </div>
 
               {/* Logo icon */}
@@ -435,7 +530,14 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
                   <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">{title}</h3>
-                <p className="text-gray-600 text-base sm:text-lg">{value}</p>
+                <a
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="text-gray-600 text-base sm:text-lg hover:text-[var(--brand-blue)] underline-offset-2 hover:underline transition-colors"
+                >
+                  {value}
+                </a>
               </div>
             ))}
           </div>
