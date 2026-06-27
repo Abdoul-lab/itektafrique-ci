@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Accueil from './pages/Accueil';
 import Consultation from './pages/Consultation';
+import Contact from './pages/Contact';
 import Chatbot from './components/Chatbot';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('accueil');
@@ -21,7 +23,9 @@ function App() {
         return <Accueil onPageChange={setCurrentPage} />;
       case 'consultation':
         return <Consultation />;
-default:
+      case 'contact':
+        return <Contact />;
+      default:
         return <Accueil />;
     }
   };
@@ -57,6 +61,7 @@ default:
 
       {/* Chatbot */}
       <Chatbot autoOpen={false} />
+      <ScrollToTop />
     </div>
   );
 }

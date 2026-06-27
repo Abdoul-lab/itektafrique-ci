@@ -3,7 +3,7 @@ import {
   Code, Users, Monitor, Phone, Mail, MapPin,
   CheckCircle, Server, Smartphone,
   GraduationCap, Heart, ShoppingCart, Building2, Zap, Landmark,
-  ArrowRight, Globe, Cloud, Bot,
+  ArrowRight, Globe, Cloud, Bot, ShieldCheck, Network,
 } from 'lucide-react';
 import { CONTACT } from '../constants/contact';
 import { useInView } from '../hooks/useInView';
@@ -122,33 +122,57 @@ const heroStats = [
 
 const serviceCards = [
   {
-    img: '/images/service-web.jpg',
-    imgAlt: 'Développement web et mobile',
-    overlay: 'from-blue-800/70',
-    iconBg: 'bg-blue-500',
-    Icon: Monitor,
-    title: 'Développement Web & Mobile',
-    desc: "Votre vitrine en ligne disponible 24h/24 — pour que vos clients vous trouvent, vous fassent confiance et vous contactent sans effort.",
+    gradient: 'from-blue-500 to-blue-700',
+    iconBg: 'bg-white/20',
+    Icon: Globe,
+    title: 'Développement Web Performance',
+    tags: ['Sites vitrines', 'E-commerce', 'Portails métiers'],
+    desc: "Un site professionnel, rapide et sécurisé — vos clients vous trouvent, vous font confiance et vous contactent même quand vous dormez.",
     delay: 'delay-100',
   },
   {
-    img: '/images/service-infra.jpg',
-    imgAlt: 'Infrastructure IT et réseaux',
-    overlay: 'from-orange-700/70',
-    iconBg: 'bg-[var(--brand-orange)]',
-    Icon: Server,
-    title: 'Infrastructure IT',
-    desc: "Plus de pannes réseau qui paralysent votre équipe — nous installons et gérons votre infrastructure pour que vous travailliez sans interruption.",
+    gradient: 'from-[var(--brand-orange)] to-orange-600',
+    iconBg: 'bg-white/20',
+    Icon: Bot,
+    title: 'Logiciels Sur-Mesure & IA',
+    tags: ['ERP / CRM', 'Chatbots IA', 'Automatisation RPA'],
+    desc: "Fini les fichiers Excel en double et les saisies répétitives — vos équipes travaillent plus vite, font moins d'erreurs et vous pilotez tout depuis un seul endroit.",
     delay: 'delay-200',
   },
   {
-    img: '/images/service-conseil.jpg',
-    imgAlt: 'Conseil et formation informatique',
-    overlay: 'from-purple-800/70',
-    iconBg: 'bg-purple-500',
-    Icon: Users,
-    title: 'Conseil & Formation',
-    desc: "Vos équipes maîtrisent leurs outils et vous prenez les bonnes décisions technologiques — sans vous faire avoir.",
+    gradient: 'from-purple-500 to-purple-700',
+    iconBg: 'bg-white/20',
+    Icon: Smartphone,
+    title: 'Applications Mobiles Intuitives',
+    tags: ['Android & iOS', 'IA embarquée', 'Applications terrain'],
+    desc: "Vos équipes terrain agissent depuis leur téléphone, vos clients commandent ou réservent en quelques secondes — où qu'ils soient, à toute heure.",
+    delay: 'delay-300',
+  },
+  {
+    gradient: 'from-green-500 to-green-700',
+    iconBg: 'bg-white/20',
+    Icon: ShieldCheck,
+    title: 'Assurance Qualité & Tests',
+    tags: ['Tests fonctionnels', 'Contrôle qualité', 'Performance & UX'],
+    desc: "Vos utilisateurs ne verront jamais un bug — chaque livraison est testée en profondeur pour que votre réputation ne souffre d'aucune mauvaise surprise.",
+    delay: 'delay-100',
+  },
+  {
+    gradient: 'from-indigo-500 to-indigo-700',
+    iconBg: 'bg-white/20',
+    Icon: Network,
+    title: 'Interconnexion & Infrastructure',
+    tags: ['Intégration APIs', 'Réseaux d\'entreprise', 'Vidéosurveillance IA'],
+    desc: "Vos logiciels se parlent, vos équipes accèdent aux bonnes informations sans ressaisie — plus de silos, plus de temps perdu à chercher une donnée.",
+    delay: 'delay-200',
+  },
+  {
+    gradient: 'from-cyan-500 to-cyan-700',
+    iconBg: 'bg-white/20',
+    Icon: Cloud,
+    title: 'Maintenance & Cloud Sécurisé',
+    tags: ['Hébergement cloud', 'Sauvegardes auto', 'Support 24/7'],
+    desc: "Vos données sont sauvegardées, votre système surveillé 24h/24 — en cas d'incident, on intervient avant même que vous le remarquiez.",
     delay: 'delay-300',
   },
 ];
@@ -345,29 +369,26 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {serviceCards.map(({ img, imgAlt, overlay, iconBg, Icon, title, desc, delay }) => (
+            {serviceCards.map(({ gradient, iconBg, Icon, title, tags, desc, delay }) => (
               <div
                 key={title}
                 className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group reveal ${delay} ${servicesInView ? 'visible' : ''}`}
               >
-                {/* Photo header */}
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={img}
-                    alt={imgAlt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-b ${overlay} to-black/10`} />
-                  <div className="absolute bottom-3 left-4">
-                    <div className={`${iconBg} p-2.5 rounded-xl shadow-lg`}>
-                      <Icon className="h-5 w-5 text-white" />
-                    </div>
+                {/* Gradient header */}
+                <div className={`bg-gradient-to-br ${gradient} p-6 flex items-center gap-4`}>
+                  <div className={`${iconBg} p-3 rounded-xl`}>
+                    <Icon className="h-7 w-7 text-white" />
                   </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white leading-tight">{title}</h3>
                 </div>
                 {/* Content */}
-                <div className="p-5 sm:p-7">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">{title}</h3>
-                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{desc}</p>
+                <div className="p-5 sm:p-6">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {tags.map(tag => (
+                      <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed text-sm">{desc}</p>
                 </div>
               </div>
             ))}
@@ -521,7 +542,7 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {contactCards.map(({ bg, iconBg, Icon, title, value, delay }) => (
+            {contactCards.map(({ bg, iconBg, Icon, title, value, href, delay }) => (
               <div
                 key={title}
                 className={`text-center p-6 sm:p-8 rounded-2xl bg-gradient-to-br ${bg} hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 reveal ${delay} ${contactInView ? 'visible' : ''}`}

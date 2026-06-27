@@ -13,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
   const navItems = [
     { id: 'accueil', label: 'Accueil' },
     { id: 'consultation', label: 'Services' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   return (
