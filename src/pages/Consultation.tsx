@@ -23,11 +23,18 @@ const Consultation: React.FC = () => {
     company: '',
     email: '',
     phone: '',
+    profile: '',
     service: '',
     message: '',
     preferredDate: '',
     preferredTime: '',
   });
+
+  const handleServiceCardClick = (serviceId: string) => {
+    setSelectedService(serviceId);
+    setFormData((prev) => ({ ...prev, service: serviceId }));
+    document.getElementById('form-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const filteredServices = useMemo(() => {
     if (selectedProfile === 'Tous') return consultationServices;
@@ -157,7 +164,7 @@ const Consultation: React.FC = () => {
                       ? 'border-blue-500 bg-blue-50 shadow-xl'
                       : 'border-gray-200 bg-white hover:border-orange-300 hover:shadow-lg'
                   }`}
-                  onClick={() => setSelectedService(service.id)}
+                  onClick={() => handleServiceCardClick(service.id)}
                 >
                   <div className="flex items-start space-x-3 sm:space-x-4">
                     <div className={`p-3 rounded-full flex-shrink-0 ${selectedService === service.id ? 'bg-blue-500' : 'bg-[var(--brand-orange)]'}`}>
@@ -211,7 +218,7 @@ const Consultation: React.FC = () => {
       </section>
 
       {/* Formulaire */}
-      <section className="py-12 sm:py-20 bg-gray-50">
+      <section id="form-section" className="py-12 sm:py-20 bg-gray-50">
         <div className="w-full px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10 sm:mb-12">
@@ -348,6 +355,27 @@ const Consultation: React.FC = () => {
 
                 <div>
                   <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    Votre profil *
+                  </label>
+                  <select
+                    name="profile"
+                    value={formData.profile}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm"
+                  >
+                    <option value="">Sélectionner votre profil</option>
+                    <option value="PME">PME</option>
+                    <option value="Startup">Startup</option>
+                    <option value="Grande entreprise">Grande entreprise / Groupe / Multinationale</option>
+                    <option value="Institution">Institution / Administration / Collectivité</option>
+                    <option value="Professions libérales">Profession libérale</option>
+                    <option value="Porteur de projet">Porteur de projet / Investisseur</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                     Offre souhaitée *
                   </label>
                   <select
@@ -364,6 +392,11 @@ const Consultation: React.FC = () => {
                       </option>
                     ))}
                   </select>
+                  {formData.service && (
+                    <p className="mt-1 text-xs text-blue-600">
+                      ✓ Offre sélectionnée depuis les cartes — vous pouvez la modifier ici
+                    </p>
+                  )}
                 </div>
 
                 <div>
