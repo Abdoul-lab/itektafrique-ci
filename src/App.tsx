@@ -23,7 +23,7 @@ function App() {
       case 'consultation':
         return <Consultation />;
       case 'outils':
-        return <OutilsRessources />;
+        return <OutilsRessources onPageChange={setCurrentPage} />;
       default:
         return <Accueil />;
     }

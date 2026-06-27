@@ -14,7 +14,11 @@ import {
 import { resources, categories, featuredResources } from '../data/resourcesData';
 import type { Resource } from '../data/resourcesData';
 
-const OutilsRessources: React.FC = () => {
+interface OutilsRessourcesProps {
+  onPageChange: (page: string) => void;
+}
+
+const OutilsRessources: React.FC<OutilsRessourcesProps> = ({ onPageChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
@@ -326,17 +330,22 @@ const OutilsRessources: React.FC = () => {
         </div>
       )}
 
-      {/* Section aide */}
+      {/* CTA conversion */}
       <section className="py-10 sm:py-16 bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white">
         <div className="w-full px-3 sm:px-4 text-center">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 px-2">Une question ?</h2>
-          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 px-2 max-w-3xl mx-auto">
-            Notre équipe est là pour vous aider, que vous soyez débutant ou expérimenté.
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 px-2">Ces guides vous ont aidé ?</h2>
+          <p className="text-base sm:text-lg mb-6 sm:mb-8 opacity-90 px-2 max-w-2xl mx-auto">
+            Passez à l'étape suivante — un diagnostic gratuit pour voir comment on peut concrètement vous accompagner.
           </p>
-          <button className="bg-white text-blue-600 px-6 sm:px-8 py-2 sm:py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 inline-flex items-center space-x-2 text-sm sm:text-base">
-            <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span>Contacter notre équipe</span>
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={() => onPageChange('consultation')}
+              className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 inline-flex items-center justify-center space-x-2 text-sm sm:text-base"
+            >
+              <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span>Demander mon diagnostic gratuit</span>
+            </button>
+          </div>
         </div>
       </section>
     </div>
