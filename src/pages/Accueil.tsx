@@ -27,7 +27,9 @@ const heroStats = [
 
 const serviceCards = [
   {
-    bg: 'from-blue-50 to-blue-100',
+    img: '/images/service-web.jpg',
+    imgAlt: 'Développement web et mobile',
+    overlay: 'from-blue-800/70',
     iconBg: 'bg-blue-500',
     Icon: Monitor,
     title: 'Développement Web & Mobile',
@@ -35,7 +37,9 @@ const serviceCards = [
     delay: 'delay-100',
   },
   {
-    bg: 'from-orange-50 to-orange-100',
+    img: '/images/service-infra.jpg',
+    imgAlt: 'Infrastructure IT et réseaux',
+    overlay: 'from-orange-700/70',
     iconBg: 'bg-[var(--brand-orange)]',
     Icon: Server,
     title: 'Infrastructure IT',
@@ -43,7 +47,9 @@ const serviceCards = [
     delay: 'delay-200',
   },
   {
-    bg: 'from-purple-50 to-purple-100',
+    img: '/images/service-conseil.jpg',
+    imgAlt: 'Conseil et formation informatique',
+    overlay: 'from-purple-800/70',
     iconBg: 'bg-purple-500',
     Icon: Users,
     title: 'Conseil & Formation',
@@ -239,16 +245,30 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {serviceCards.map(({ bg, iconBg, Icon, title, desc, delay }) => (
+            {serviceCards.map(({ img, imgAlt, overlay, iconBg, Icon, title, desc, delay }) => (
               <div
                 key={title}
-                className={`bg-gradient-to-br ${bg} p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group reveal ${delay} ${servicesInView ? 'visible' : ''}`}
+                className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group reveal ${delay} ${servicesInView ? 'visible' : ''}`}
               >
-                <div className={`${iconBg} p-3 rounded-full w-fit mb-6 transition-transform duration-300 group-hover:scale-110`}>
-                  <Icon className="h-8 w-8 text-white" />
+                {/* Photo header */}
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={img}
+                    alt={imgAlt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${overlay} to-black/10`} />
+                  <div className="absolute bottom-3 left-4">
+                    <div className={`${iconBg} p-2.5 rounded-xl shadow-lg`}>
+                      <Icon className="h-5 w-5 text-white" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">{title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{desc}</p>
+                {/* Content */}
+                <div className="p-5 sm:p-7">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">{title}</h3>
+                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -354,17 +374,30 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
               ))}
             </div>
 
-            <div className={`bg-gradient-to-br from-blue-100 to-orange-50 p-6 sm:p-8 rounded-2xl reveal-right ${strengthsInView ? 'visible' : ''}`}>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Votre projet mérite un vrai diagnostic.</h3>
-              <p className="text-sm sm:text-base text-gray-600 mb-6">
-                En 30 minutes, nous analysons votre situation et vous disons honnêtement ce que l'informatique peut faire pour votre business. Gratuit et sans engagement.
-              </p>
-              <button
-                onClick={() => onPageChange('consultation')}
-                className="w-full bg-gradient-to-r from-blue-600 to-[var(--brand-orange)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base"
-              >
-                Demander mon audit gratuit
-              </button>
+            <div
+              className={`relative rounded-2xl overflow-hidden reveal-right ${strengthsInView ? 'visible' : ''}`}
+              style={{ minHeight: '320px' }}
+            >
+              <img
+                src="/images/team-meeting.jpg"
+                alt="Équipe ITEKTAFRIQUE en consultation"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-blue)]/95 via-[var(--brand-blue)]/65 to-[var(--brand-blue)]/15" />
+              <div className="relative flex flex-col justify-end h-full p-6 sm:p-8" style={{ minHeight: '320px' }}>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                  Votre projet mérite un vrai diagnostic.
+                </h3>
+                <p className="text-sm sm:text-base text-blue-100 mb-5">
+                  En 30 minutes, nous analysons votre situation et vous disons honnêtement ce que l'informatique peut faire pour votre business. Gratuit et sans engagement.
+                </p>
+                <button
+                  onClick={() => onPageChange('consultation')}
+                  className="w-full bg-white text-[var(--brand-blue)] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base"
+                >
+                  Demander mon audit gratuit
+                </button>
+              </div>
             </div>
           </div>
         </div>

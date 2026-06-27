@@ -12,6 +12,7 @@ import {
 import { consultationServices, strengths, profileLabels } from '../data/servicesData';
 import { CONTACT } from '../constants/contact';
 import { useInView } from '../hooks/useInView';
+import { MeetingIllu } from '../components/Illustrations';
 
 const Consultation: React.FC = () => {
   const { ref: stepsRef, inView: stepsInView } = useInView<HTMLDivElement>();
@@ -45,20 +46,30 @@ const Consultation: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-[var(--brand-orange)] text-white py-12 sm:py-20">
-        <div className="absolute inset-0 bg-black/20"></div>
+      {/* Hero avec photo */}
+      <section className="relative text-white py-16 sm:py-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="/images/consultation-bg.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-blue)]/92 via-blue-700/85 to-[var(--brand-orange)]/75" />
+        </div>
         <div className="relative w-full px-3 sm:px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Demande de consultation</h1>
-            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 px-2">
-              Décrivez-nous votre projet — nous vous rappelons sous 24h.
-            </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-6">
               <div className="bg-white/10 p-3 sm:p-4 rounded-full backdrop-blur-sm">
                 <Calendar className="h-10 w-10 sm:h-16 sm:w-16 text-[var(--brand-orange)]" />
               </div>
             </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 animate-fade-in-up">
+              Demande de consultation
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 px-2 animate-fade-in-up delay-200">
+              Décrivez-nous votre projet — nous vous rappelons sous 24h.
+            </p>
           </div>
         </div>
       </section>
@@ -202,7 +213,7 @@ const Consultation: React.FC = () => {
       {/* Formulaire */}
       <section className="py-12 sm:py-20 bg-gray-50">
         <div className="w-full px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Votre demande</h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 px-2">
@@ -210,6 +221,29 @@ const Consultation: React.FC = () => {
               </p>
             </div>
 
+            {/* 2 colonnes : illustration + formulaire */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+
+              {/* Illustration side */}
+              <div className="hidden lg:flex lg:col-span-2 flex-col justify-center">
+                <MeetingIllu className="w-full max-w-xs mx-auto" />
+                <div className="mt-8 space-y-4">
+                  {[
+                    { icon: '🎯', text: 'Diagnostic gratuit et sans engagement' },
+                    { icon: '⚡', text: 'Réponse sous 24h garantie' },
+                    { icon: '🤝', text: 'Un interlocuteur dédié à votre projet' },
+                    { icon: '📋', text: 'Devis détaillé et transparent' },
+                  ].map(({ icon, text }) => (
+                    <div key={text} className="flex items-center gap-3 text-gray-700">
+                      <span className="text-lg flex-shrink-0">{icon}</span>
+                      <span className="text-sm sm:text-base">{text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Form side */}
+              <div className="lg:col-span-3">
             <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
@@ -356,6 +390,8 @@ const Consultation: React.FC = () => {
                 </div>
               </form>
             </div>
+              </div>{/* end form side */}
+            </div>{/* end grid */}
           </div>
         </div>
       </section>

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { resources, categories, featuredResources } from '../data/resourcesData';
 import type { Resource } from '../data/resourcesData';
+import { ResourcesIllu } from '../components/Illustrations';
 
 interface OutilsRessourcesProps {
   onPageChange: (page: string) => void;
@@ -59,18 +60,43 @@ const OutilsRessources: React.FC<OutilsRessourcesProps> = ({ onPageChange }) => 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-orange-50">
       {/* Hero */}
-      <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-[var(--brand-orange)] text-white py-12 sm:py-20">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative w-full px-3 sm:px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Ressources gratuites</h1>
-            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 px-2">
-              Des guides, modèles et tutoriels pour vous aider dans vos projets informatiques
-            </p>
-            <div className="flex justify-center">
-              <div className="bg-white/10 p-3 sm:p-4 rounded-full backdrop-blur-sm">
-                <BookOpen className="h-10 w-10 sm:h-16 sm:w-16 text-[var(--brand-orange)]" />
+      <section className="relative bg-gradient-to-br from-[var(--brand-blue)] via-blue-700 to-blue-800 text-white py-12 sm:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-black/10" />
+        {/* Animated orbs */}
+        <div className="absolute -top-16 -left-16 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-orb pointer-events-none" />
+        <div className="absolute -bottom-10 -right-10 w-56 h-56 rounded-full blur-3xl animate-orb-alt pointer-events-none" style={{ background: 'rgba(255,154,46,0.15)' }} />
+
+        <div className="relative w-full px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Left: text */}
+            <div className="text-center lg:text-left">
+              <div className="flex justify-center lg:justify-start mb-4">
+                <div className="bg-white/10 p-3 rounded-full backdrop-blur-sm">
+                  <BookOpen className="h-10 w-10 sm:h-12 sm:w-12 text-[var(--brand-orange)]" />
+                </div>
               </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 animate-fade-in-up">
+                Ressources gratuites
+              </h1>
+              <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-90 px-2 lg:px-0 animate-fade-in-up delay-200">
+                Des guides, modèles et tutoriels pour vous aider dans vos projets informatiques
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 animate-fade-in-up delay-300">
+                {[
+                  { n: '9', label: 'ressources' },
+                  { n: '6', label: 'domaines' },
+                  { n: '100%', label: 'gratuit' },
+                ].map(({ n, label }) => (
+                  <div key={label} className="text-center lg:text-left">
+                    <div className="text-2xl sm:text-3xl font-bold text-[var(--brand-orange)]">{n}</div>
+                    <div className="text-xs sm:text-sm opacity-75">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Right: illustration */}
+            <div className="hidden lg:flex items-center justify-center animate-fade-in-right delay-300">
+              <ResourcesIllu className="w-full max-w-xs opacity-90" />
             </div>
           </div>
         </div>
