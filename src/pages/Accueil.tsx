@@ -388,7 +388,11 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-blue)]/95 via-[var(--brand-blue)]/65 to-[var(--brand-blue)]/15" />
+              {/* Overlay rgba inline — var(--brand-blue) hex ne supporte pas /N en Tailwind */}
+              <div
+                className="absolute inset-0"
+                style={{ background: 'linear-gradient(to top, rgba(11,79,160,0.96) 0%, rgba(11,79,160,0.75) 45%, rgba(11,79,160,0.25) 100%)' }}
+              />
               <div className="relative flex flex-col justify-end p-6 sm:p-8" style={{ minHeight: '320px' }}>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
                   Votre projet mérite un vrai diagnostic.
@@ -398,7 +402,7 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
                 </p>
                 <button
                   onClick={() => onPageChange('consultation')}
-                  className="w-full bg-white text-[var(--brand-blue)] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base"
+                  className="w-full bg-[var(--brand-orange)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:opacity-90 transition-all duration-200 transform hover:-translate-y-1 text-sm sm:text-base"
                 >
                   Demander mon audit gratuit
                 </button>
