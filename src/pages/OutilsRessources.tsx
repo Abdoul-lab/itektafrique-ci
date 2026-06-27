@@ -94,9 +94,9 @@ const OutilsRessources: React.FC<OutilsRessourcesProps> = ({ onPageChange }) => 
                 ))}
               </div>
             </div>
-            {/* Right: illustration */}
-            <div className="hidden lg:flex items-center justify-center animate-fade-in-right delay-300">
-              <ResourcesIllu className="w-full max-w-xs opacity-90" />
+            {/* Right: illustration — visible sur toutes les tailles */}
+            <div className="flex items-center justify-center mt-6 lg:mt-0 animate-fade-in-right delay-300">
+              <ResourcesIllu className="w-full max-w-[220px] lg:max-w-xs opacity-90" />
             </div>
           </div>
         </div>

@@ -203,10 +203,15 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
               </div>
             </div>
 
-            {/* Right: tech illustration (desktop only) */}
+            {/* Right: tech illustration — desktop only */}
             <div className="hidden lg:flex items-center justify-center animate-fade-in-right delay-300">
               <TechIllustration />
             </div>
+          </div>
+
+          {/* Tech illustration — mobile only, centred below text */}
+          <div className="flex justify-center mt-8 lg:hidden animate-fade-in-up delay-600">
+            <TechIllustration />
           </div>
         </div>
       </header>
@@ -376,15 +381,15 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
 
             <div
               className={`relative rounded-2xl overflow-hidden reveal-right ${strengthsInView ? 'visible' : ''}`}
-              style={{ minHeight: '320px' }}
+              style={{
+                minHeight: '320px',
+                backgroundImage: 'url(/images/team-meeting.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             >
-              <img
-                src="/images/team-meeting.jpg"
-                alt="Équipe ITEKTAFRIQUE en consultation"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-blue)]/95 via-[var(--brand-blue)]/65 to-[var(--brand-blue)]/15" />
-              <div className="relative flex flex-col justify-end h-full p-6 sm:p-8" style={{ minHeight: '320px' }}>
+              <div className="relative flex flex-col justify-end p-6 sm:p-8" style={{ minHeight: '320px' }}>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
                   Votre projet mérite un vrai diagnostic.
                 </h3>

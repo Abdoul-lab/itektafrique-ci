@@ -224,10 +224,10 @@ const Consultation: React.FC = () => {
             {/* 2 colonnes : illustration + formulaire */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
 
-              {/* Illustration side */}
-              <div className="hidden lg:flex lg:col-span-2 flex-col justify-center">
-                <MeetingIllu className="w-full max-w-xs mx-auto" />
-                <div className="mt-8 space-y-4">
+              {/* Illustration side — visible sur toutes les tailles */}
+              <div className="flex lg:col-span-2 flex-col items-center lg:items-start justify-center">
+                <MeetingIllu className="w-full max-w-[240px] lg:max-w-xs mx-auto" />
+                <div className="mt-6 lg:mt-8 space-y-3 lg:space-y-4 w-full max-w-xs">
                   {[
                     { icon: '🎯', text: 'Diagnostic gratuit et sans engagement' },
                     { icon: '⚡', text: 'Réponse sous 24h garantie' },
