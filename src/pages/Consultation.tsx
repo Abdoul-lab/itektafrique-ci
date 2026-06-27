@@ -11,8 +11,10 @@ import {
 } from 'lucide-react';
 import { consultationServices, strengths, profileLabels } from '../data/servicesData';
 import { CONTACT } from '../constants/contact';
+import { useInView } from '../hooks/useInView';
 
 const Consultation: React.FC = () => {
+  const { ref: stepsRef, inView: stepsInView } = useInView<HTMLDivElement>();
   const [selectedService, setSelectedService] = useState('');
   const [selectedProfile, setSelectedProfile] = useState('Tous');
   const [formData, setFormData] = useState({
@@ -64,24 +66,38 @@ const Consultation: React.FC = () => {
       {/* Comment ça marche */}
       <section className="py-10 sm:py-14 bg-gray-50">
         <div className="w-full px-3 sm:px-4">
-          <div className="text-center mb-8 sm:mb-10">
+          <div className={`text-center mb-8 sm:mb-10 reveal ${stepsInView ? 'visible' : ''}`}>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">Comment ça marche ?</h2>
             <p className="text-base text-gray-600">De votre première demande à la livraison, voici les étapes.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div
+            ref={stepsRef}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto"
+          >
             {[
               { step: '01', title: 'Diagnostic gratuit', desc: 'On analyse votre situation en 30 minutes, sans engagement.' },
               { step: '02', title: 'Proposition sur mesure', desc: 'On vous présente une offre adaptée à votre budget et vos priorités.' },
               { step: '03', title: 'Réalisation', desc: 'On développe votre projet étape par étape avec des points réguliers.' },
               { step: '04', title: 'Livraison & suivi', desc: 'On forme vos équipes et restons disponibles après la mise en ligne.' },
             ].map(({ step, title, desc }, i, arr) => (
-              <div key={step} className="relative flex flex-col items-center text-center sm:items-start sm:text-left">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-[var(--brand-blue)] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+              <div
+                key={step}
+                className={`relative flex flex-col items-center text-center sm:items-start sm:text-left reveal delay-${(i + 1) * 100} ${stepsInView ? 'visible' : ''}`}
+              >
+                <div className="flex items-center gap-3 mb-3 w-full">
+                  <div
+                    className={`w-10 h-10 rounded-full bg-[var(--brand-blue)] text-white flex items-center justify-center font-bold text-sm flex-shrink-0 transition-all duration-500 ${stepsInView ? 'shadow-lg shadow-blue-500/30 scale-110' : ''}`}
+                    style={{ transitionDelay: `${i * 120}ms` }}
+                  >
                     {step}
                   </div>
                   {i < arr.length - 1 && (
-                    <div className="hidden lg:block flex-1 h-0.5 bg-blue-100 w-full" />
+                    <div className="hidden lg:block flex-1 h-0.5 bg-blue-100 overflow-hidden">
+                      <div
+                        className={`h-full bg-[var(--brand-blue)] ${stepsInView ? 'animate-draw-line' : ''}`}
+                        style={{ animationDelay: `${i * 0.25 + 0.4}s` }}
+                      />
+                    </div>
                   )}
                 </div>
                 <h3 className="font-bold text-gray-800 mb-1 text-sm sm:text-base">{title}</h3>
