@@ -21,14 +21,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
       {/* Liseré de marque */}
       <div className="h-[3px] bg-gradient-to-r from-[var(--brand-blue)] via-sky-400 to-[var(--brand-orange)]" />
       <div className="w-full px-2 sm:px-4">
-        <div className="flex justify-between items-center py-2 sm:py-4">
+        <div className="flex justify-between items-center pt-0 pb-0">
           {/* Logo */}
           <div 
             className="flex items-center cursor-pointer flex-shrink-0"
             onClick={() => onPageChange('accueil')}
           >
             <div className="bg-white">
-              <img src="images/logost1.png" alt="Logo de la société" className="h-20 sm:h-24 md:h-32" />
+              <img src="images/logost1.png" alt="Logo de la société" className="h-14 sm:h-16 md:h-20" />
             </div>
             
           </div>

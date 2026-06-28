@@ -36,25 +36,16 @@ function App() {
       {renderPage()}
 
       {/* Footer */}
-      <footer className="bg-[var(--brand-dark)] text-white py-8 sm:py-12">
+      <footer className="bg-[var(--brand-dark)] text-white py-2 sm:py-3">
         <div className="w-full px-3 sm:px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="bg-white p-2 rounded-full shadow-[10px_10px_25px_rgba(0,0,0,0.25),_-10px_-10px_25px_rgba(255,255,255,0.9)]">
-                <img
-                  src="images/logost1.png"
-                  alt="Logo"
-                  className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24"
-                />
+          <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <div className="bg-white rounded-full p-0.5">
+                <img src="images/logost1.png" alt="Logo" className="h-8 sm:h-10" />
               </div>
+              <span className="text-xs sm:text-sm font-semibold">ITEKTAFRIQUE CÔTE D'IVOIRE</span>
             </div>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 px-2">ITEKTAFRIQUE CÔTE D'IVOIRE</h3>
-            <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base px-2">
-              Votre partenaire de confiance en solutions informatiques
-            </p>
-            <p className="text-gray-500 text-xs sm:text-sm px-2">
-              © 2025 - Tous droits réservés.
-            </p>
+            <p className="text-gray-500 text-xs">© 2026 - Tous droits réservés.</p>
           </div>
         </div>
       </footer>
