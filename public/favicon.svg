@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="c">
+      <rect width="32" height="32" rx="7"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="32" height="32" fill="white"/>
+    <!-- Ovale bleu (tête) -->
+    <ellipse cx="16" cy="6.5" rx="4.5" ry="3.5" fill="#0B4FA0"/>
+    <!-- Bowtie orange — lobe gauche -->
+    <path d="M 16,18.5 C 12,13 1,13 1,20 C 1,27 12,27 16,21.5 Z" fill="#FF9A2E"/>
+    <!-- Bowtie orange — lobe droit -->
+    <path d="M 16,18.5 C 20,13 31,13 31,20 C 31,27 20,27 16,21.5 Z" fill="#FF9A2E"/>
+  </g>
+</svg>

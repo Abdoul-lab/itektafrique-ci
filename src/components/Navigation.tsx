@@ -18,6 +18,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
+      {/* Liseré de marque */}
+      <div className="h-[3px] bg-gradient-to-r from-[var(--brand-blue)] via-sky-400 to-[var(--brand-orange)]" />
       <div className="w-full px-2 sm:px-4">
         <div className="flex justify-between items-center py-2 sm:py-4">
           {/* Logo */}
@@ -26,7 +28,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
             onClick={() => onPageChange('accueil')}
           >
             <div className="bg-white">
-              <img src="images/logost1.png" alt="Logo de la société" className="h-12 sm:h-16 md:h-20" />
+              <img src="images/logost1.png" alt="Logo de la société" className="h-20 sm:h-24 md:h-32" />
             </div>
             
           </div>
