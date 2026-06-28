@@ -837,7 +837,7 @@ const Accueil: React.FC<AccueilProps> = ({ onPageChange }) => {
             <p className="text-[var(--brand-orange)] font-semibold text-sm tracking-widest uppercase mb-3">Parlons de votre projet</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Contactez-nous</h2>
             <p className="text-base sm:text-lg text-white/50 px-2">
-              Disponibles du lundi au vendredi, de 8h à 18h
+              Disponibles du lundi au jeudi, de 8h à 18h
             </p>
           </div>
 

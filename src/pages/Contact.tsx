@@ -130,9 +130,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="space-y-3 text-sm">
                   {[
-                    { day: 'Lundi – Vendredi', time: '08h00 – 18h00' },
-                    { day: 'Samedi', time: '09h00 – 13h00' },
-                    { day: 'Dimanche', time: 'Fermé' },
+                    { day: 'Lundi – Jeudi', time: '08h00 – 18h00' },
+                    { day: 'Vendredi', time: 'Fermé' },
+                    { day: 'Samedi – Dimanche', time: 'Fermé' },
                   ].map(({ day, time }) => (
                     <div key={day} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
                       <span className="text-gray-600">{day}</span>
@@ -239,7 +239,7 @@ const Contact: React.FC = () => {
             <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100">
               <iframe
                 title="Localisation ITEKTAFRIQUE"
-                src="https://www.google.com/maps?q=Cocody+Djorogobite,+Abidjan,+Cote+d+Ivoire&output=embed&hl=fr"
+                src="https://maps.google.com/maps?cid=2881544067528407144&output=embed&hl=fr&gl=CI"
                 width="100%"
                 height="420"
                 style={{ border: 0, display: 'block' }}
